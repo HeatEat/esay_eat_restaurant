@@ -5,6 +5,14 @@ class RootScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Restaurants"),
+      ),
+      body: Card(
+        child: Text("SDASDAD"),
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
+    );
   }
 }
