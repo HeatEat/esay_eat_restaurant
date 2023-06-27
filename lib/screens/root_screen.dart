@@ -1,3 +1,4 @@
+import 'package:easy_eat_restaurant/core/constatns.dart';
 import 'package:flutter/material.dart';
 
 class RootScreen extends StatelessWidget {
@@ -7,10 +8,10 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Restaurants"),
-      ),
-      body: Card(
-        child: Text("SDASDAD"),
+        title: const Text(
+          K.appName,
+          textAlign: TextAlign.center,
+        ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {}),
     );

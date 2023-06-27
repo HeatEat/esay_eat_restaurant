@@ -1,0 +1,33 @@
+{
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+        "description": "The conventional newborn programmer greeting"
+    },
+    "noAccount": "Don't have account?",
+    "@noAccount": {
+        "description": "If user don't have account"
+    },
+    "haveAccount": "You have an account?",
+    "login": "Login!",
+    "remindPassowrd": "Remind password",
+    "forgotPassword": "Forgot password?",
+    "createAccount": "Create account!",
+    "password": "password",
+    "email": "e-mail",
+    "name": "First name",
+    "lastName": "Last name",
+    "phone": "phone number",
+    "pickUpPlace": "Pick up place",
+    "home": "Home",
+    "shoppingCard": "Shopping card",
+    "account": "Account",
+    "verificationCode": "Verification code",
+    "verificationMessage": "We send you an email with verification code",
+    "accountExist": "Account with this email already exists",
+    "somethingWentWrong": "Something went wrong",
+    "emailNotConfirmed": "Email not confirmed",
+    "wrongVerificationCode": "Wrong verification code. Try again.",
+    "confirmPassword" : "confirm password",
+    "passwordsDontMach": "Passwords don't match",
+    "invalidCredentials": "Invalid credentials"
+}
