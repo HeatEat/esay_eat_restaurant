@@ -1,9 +1,11 @@
+import 'package:easy_eat_restaurant/core/app_router.dart';
 import 'package:easy_eat_restaurant/core/constatns.dart';
 import 'package:easy_eat_restaurant/screens/account_screen.dart';
 import 'package:easy_eat_restaurant/screens/menu_screen.dart';
 import 'package:easy_eat_restaurant/screens/orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../cubit/navigation_bar_cubit.dart';
 
@@ -15,36 +17,26 @@ class RootScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => NavigationBarCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            K.appName,
-            textAlign: TextAlign.center,
+        // appBar: AppBar(
+        //   // title: const Text(
+        //   //   K.appName,
+        //   //   textAlign: TextAlign.center,
+        //   // ),
+        // ),
+        body: SafeArea(
+          child: BlocBuilder<NavigationBarCubit, NavigationBarState>(
+            builder: (context, state) {
+              if (state is NavigationBarOrders) {
+                return const OrdersScreen();
+              } else if (state is NavigationBarMenu) {
+                return const MenuScreen();
+              } else if (state is NavigationBarAccount) {
+                return const AccountScreen();
+              } else {
+                return Container();
+              }
+            },
           ),
-        ),
-        body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
-          builder: (context, state) {
-            if (state is NavigationBarOrders) {
-              return const OrdersScreen();
-            } else if (state is NavigationBarMenu) {
-              return const MenuScreen();
-            } else if (state is NavigationBarAccount) {
-              return const AccountScreen();
-            } else {
-              return Container();
-            }
-          },
-        ),
-        floatingActionButton:
-            BlocBuilder<NavigationBarCubit, NavigationBarState>(
-          builder: (context, state) {
-            return Visibility(
-                visible: state is NavigationBarMenu ? true : false,
-                child: FloatingActionButton.extended(
-                  onPressed: () {},
-                  label: const Text("Dodaj"),
-                  icon: const Icon(Icons.add),
-                ));
-          },
         ),
         bottomNavigationBar:
             BlocBuilder<NavigationBarCubit, NavigationBarState>(
@@ -64,6 +56,20 @@ class RootScreen extends StatelessWidget {
                     .getNavBarIndex(value);
               },
             );
+          },
+        ),
+        floatingActionButton:
+            BlocBuilder<NavigationBarCubit, NavigationBarState>(
+          builder: (context, state) {
+            return Visibility(
+                visible: state is NavigationBarMenu ? true : false,
+                child: FloatingActionButton.extended(
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.newDish);
+                  },
+                  label: const Text("Dodaj"),
+                  icon: const Icon(Icons.add),
+                ));
           },
         ),
       ),
