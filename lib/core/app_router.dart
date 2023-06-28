@@ -1,5 +1,6 @@
 import 'package:easy_eat_restaurant/screens/login_screen.dart';
 import 'package:easy_eat_restaurant/screens/new_dish_screen.dart';
+import 'package:easy_eat_restaurant/screens/register_screen.dart';
 import 'package:easy_eat_restaurant/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -29,6 +30,10 @@ class AppRouter {
       GoRoute(
         path: newDish,
         builder: (context, state) => const NewDishScreen(),
+      ),
+      GoRoute(
+        path: register,
+        builder: (context, state) => const RegisterScreen(),
       ),
     ],
   );

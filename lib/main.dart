@@ -2,15 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_eat_restaurant/core/app_router.dart';
 import 'package:easy_eat_restaurant/core/constatns.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'bloc/authentication/authentication_bloc.dart';
 import 'bloc_observer.dart';
 import 'core/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
 
   // TODO: zapisanie zmiennych do pamięci telefonu
 
@@ -26,6 +28,12 @@ void main() async {
     anonKey: supabaseBaseKey,
     debug: true,
   );
+
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<AuthenticationBloc>(
+      create: (_) => AuthenticationBloc(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -43,9 +51,11 @@ class MyApp extends StatelessWidget {
       routeInformationParser: AppRouter.router.routeInformationParser,
       routerDelegate: AppRouter.router.routerDelegate,
       localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
       ],
       supportedLocales: const [
         Locale('en'), // English

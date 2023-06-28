@@ -1,7 +1,15 @@
+import 'package:easy_eat_restaurant/screens/widgets/text_button_with_info_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:go_router/go_router.dart';
 
+import '../bloc/authentication/authentication_bloc.dart';
+import '../core/app_router.dart';
 import '../core/constatns.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -90,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                     TextButtonWithInfo(
                         infoString: AppLocalizations.of(context).noAccount,
                         textButtonCallback: () {
-                          GoRouter.of(context).go(AppRoute.registerscreen);
+                          GoRouter.of(context).go(AppRouter.register);
                         },
                         textButtonChild:
                             AppLocalizations.of(context).createAccount),
