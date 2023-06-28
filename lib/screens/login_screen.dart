@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const Text(
                       K.title,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 24,

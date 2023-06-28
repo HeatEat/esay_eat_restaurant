@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class K {
   static const appName = '';
-  static const title = 'EasyEat';
+  static const title = 'EasyEat\nRestaurants';
 }
 
 class AuthK extends K {
