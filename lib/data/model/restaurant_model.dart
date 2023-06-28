@@ -1,11 +1,11 @@
 class RestaurantModel {
   final String restaurantName;
-  bool hasRestaurantDetails = false;
+  bool hasDetails = false;
   final String nipNumber;
   final String cityName;
   final String streetName;
-  final int buildingNumber;
-  final int premisesNumber;
+  final int? buildingNumber;
+  final int? premisesNumber;
   final String postCode;
 
   RestaurantModel(
@@ -18,10 +18,27 @@ class RestaurantModel {
       required this.postCode});
 
   bool get hasSetDetails {
-    return hasRestaurantDetails;
+    return hasDetails;
   }
 
   set hasSetDetails(bool value) {
-    hasRestaurantDetails = value;
+    hasDetails = value;
+  }
+
+  factory RestaurantModel.fromJson(Map<String, dynamic> json) {
+    return RestaurantModel(
+      restaurantName: json["restaurant_name"] ?? "",
+      nipNumber: json["nip_number"] ?? "",
+      cityName: json["city_name"] ?? "",
+      streetName: json["street_name"] ?? "",
+      buildingNumber: json["building_number"],
+      premisesNumber: json["premises_number"],
+      postCode: json["post_code"] ?? "",
+    );
+  }
+
+  @override
+  String toString() {
+    return "{restaurantName: $restaurantName, nipNumber: $nipNumber, cityName: $cityName, streetName: $streetName, buildingNumber: $buildingNumber, premisesNumber: $premisesNumber, postCode: $postCode}";
   }
 }

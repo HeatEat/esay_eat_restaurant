@@ -1,21 +1,26 @@
 import 'dart:developer';
 
+import 'package:easy_eat_restaurant/data/model/restaurant_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class EasyEatRepository {
-  Future getRestaurantDetails();
+  Future<RestaurantModel> getRestaurantDetails();
 }
 
 class EasyEatRepositoryImpl implements EasyEatRepository {
   final supabase = Supabase.instance.client;
 
   @override
-  Future getRestaurantDetails() async {
+  Future<RestaurantModel> getRestaurantDetails() async {
     final data = await supabase
         .from('restaurant')
         .select()
-        .eq('id', supabase.auth.currentUser?.id);
+        .eq('id', supabase.auth.currentUser?.id)
+        .single();
 
-    log(data);
+    RestaurantModel resturant = RestaurantModel.fromJson(data);
+    log(data.toString());
+    log(resturant.toString());
+    return resturant;
   }
 }

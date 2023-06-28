@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/restaurant/restaurant_bloc.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -21,12 +24,19 @@ class AccountScreen extends StatelessWidget {
                   child: Icon(Icons.add),
                 ),
               ),
-              const Text(
-                "Nazwa",
-                style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 2),
+              BlocBuilder<RestaurantBloc, RestaurantState>(
+                builder: (context, state) {
+                  if (state is RestaurantDetailsState) {
+                    return Text(
+                      state.restaurant.restaurantName,
+                      style: const TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 2),
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
               ),
             ],
           ),

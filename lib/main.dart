@@ -1,5 +1,7 @@
+import 'package:easy_eat_restaurant/bloc/restaurant/restaurant_bloc.dart';
 import 'package:easy_eat_restaurant/core/app_router.dart';
 import 'package:easy_eat_restaurant/core/constatns.dart';
+import 'package:easy_eat_restaurant/data/repository/easy_eat_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,6 +33,10 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<AuthenticationBloc>(
       create: (_) => AuthenticationBloc(),
+    ),
+    BlocProvider<RestaurantBloc>(
+      create: (_) => RestaurantBloc(EasyEatRepositoryImpl())
+        ..add(GetRestaurantDetailsEvent()),
     ),
   ], child: const MyApp()));
 }
