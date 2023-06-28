@@ -48,6 +48,15 @@ class AccountScreen extends StatelessWidget {
                 onTap: () {},
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
+            child: Card(
+              child: ListTile(
+                title: const Text("Dane resturacji"),
+                onTap: () {},
+              ),
+            ),
           )
         ],
       ),

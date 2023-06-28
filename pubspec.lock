@@ -213,6 +213,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  form_builder:
+    dependency: "direct main"
+    description:
+      name: form_builder
+      sha256: "47d69d9fb286018ea3e9bbd49d696c1cd27766f777d78f7503559ae7eb081169"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   form_builder_validators:
     dependency: "direct main"
     description:
