@@ -1,6 +1,7 @@
 import 'package:easy_eat_restaurant/bloc/restaurant/restaurant_bloc.dart';
 import 'package:easy_eat_restaurant/core/app_router.dart';
 import 'package:easy_eat_restaurant/core/constatns.dart';
+import 'package:easy_eat_restaurant/cubit/image_cubit.dart';
 import 'package:easy_eat_restaurant/data/repository/easy_eat_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +35,12 @@ void main() async {
     BlocProvider<AuthenticationBloc>(
       create: (_) => AuthenticationBloc(),
     ),
+    BlocProvider<ImageCubit>(
+      create: (_) => ImageCubit(),
+    ),
     BlocProvider<RestaurantBloc>(
-      create: (_) => RestaurantBloc(EasyEatRepositoryImpl())
+      create: (_) => RestaurantBloc(
+          EasyEatRepositoryImpl(), BlocProvider.of<ImageCubit>(_))
         ..add(GetRestaurantDetailsEvent()),
     ),
   ], child: const MyApp()));

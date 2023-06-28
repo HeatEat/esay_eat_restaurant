@@ -8,3 +8,11 @@ abstract class ImageState extends Equatable {
 }
 
 class ImageInitial extends ImageState {}
+
+class ImagePickSuccess extends ImageState {
+  final XFile pickedImage;
+
+  const ImagePickSuccess(this.pickedImage);
+}
+
+class ImageFail extends ImageState {}

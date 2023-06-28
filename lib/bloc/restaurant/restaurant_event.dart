@@ -13,4 +13,8 @@ class HasRestaurantDetailsEvent extends RestaurantEvent {}
 
 class ChangeRestaurantDetailsEvent extends RestaurantEvent {}
 
-class ChangeRestaurantAvatarEvent extends RestaurantEvent {}
+class ChangeRestaurantAvatarEvent extends RestaurantEvent {
+  final XFile image;
+
+  const ChangeRestaurantAvatarEvent(this.image);
+}

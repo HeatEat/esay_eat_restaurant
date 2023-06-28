@@ -1,3 +1,4 @@
+import 'package:easy_eat_restaurant/cubit/image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,65 +11,70 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              InkResponse(
-                onTap: () {},
-                child: const CircleAvatar(
-                  radius: 30,
-                  child: Icon(Icons.add),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkResponse(
+                  onTap: () {
+                    BlocProvider.of<ImageCubit>(context).getAvatarImage();
+                    // context.read<ImageCubit>().getAvatarImage();
+                  },
+                  child: const CircleAvatar(
+                    radius: 30,
+                    child: Icon(Icons.add),
+                  ),
+                ),
+                BlocBuilder<RestaurantBloc, RestaurantState>(
+                  builder: (context, state) {
+                    if (state is RestaurantDetailsState) {
+                      return Text(
+                        state.restaurant.restaurantName,
+                        style: const TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 2),
+                      );
+                    }
+                    return const CircularProgressIndicator();
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
+              child: Card(
+                child: ListTile(
+                  title: const Text("Wyloguj"),
+                  onTap: () {},
                 ),
               ),
-              BlocBuilder<RestaurantBloc, RestaurantState>(
-                builder: (context, state) {
-                  if (state is RestaurantDetailsState) {
-                    return Text(
-                      state.restaurant.restaurantName,
-                      style: const TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 2),
-                    );
-                  }
-                  return const CircularProgressIndicator();
-                },
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
-            child: Card(
-              child: ListTile(
-                title: const Text("Wyloguj"),
-                onTap: () {},
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
+              child: Card(
+                child: ListTile(
+                  title: const Text("Zamówienia"),
+                  onTap: () {},
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
-            child: Card(
-              child: ListTile(
-                title: const Text("Zamówienia"),
-                onTap: () {},
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
+              child: Card(
+                child: ListTile(
+                  title: const Text("Dane resturacji"),
+                  onTap: () {},
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 3, 8, 3),
-            child: Card(
-              child: ListTile(
-                title: const Text("Dane resturacji"),
-                onTap: () {},
-              ),
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
