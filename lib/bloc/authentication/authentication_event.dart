@@ -17,11 +17,10 @@ class EmailSignInAuthEvent extends AuthenticationEvent {
 }
 
 class EmailSignUpAuthEvent extends AuthenticationEvent {
-  final String email, password, name, lastName, countryCode, phone;
+  final String email, password, name, countryCode, phone;
 
   const EmailSignUpAuthEvent(
       {required this.name,
-      required this.lastName,
       required this.countryCode,
       required this.phone,
       required this.email,

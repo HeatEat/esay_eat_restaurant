@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:easy_eat_restaurant/core/app_router.dart';
 import 'package:easy_eat_restaurant/core/constatns.dart';
 import 'package:flutter/material.dart';

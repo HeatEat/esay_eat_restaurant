@@ -44,7 +44,6 @@ class AuthService {
       {required String email,
       required String password,
       required String name,
-      required String lastName,
       required String phone,
       required String countryCode}) async {
     try {

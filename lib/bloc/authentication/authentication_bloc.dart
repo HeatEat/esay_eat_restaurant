@@ -36,12 +36,12 @@ class AuthenticationBloc
 
       try {
         final accountState = await _authservice.signUpWithEmail(
-            email: event.email,
-            password: event.password,
-            countryCode: event.countryCode,
-            phone: event.phone,
-            name: event.name,
-            lastName: event.lastName);
+          email: event.email,
+          password: event.password,
+          countryCode: event.countryCode,
+          phone: event.phone,
+          name: event.name,
+        );
         if (accountState == AccountState.createdNotVerify) {
           emit(AuthVerifiState());
         } else if (accountState == AccountState.createdVerify) {

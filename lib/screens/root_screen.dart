@@ -1,5 +1,4 @@
 import 'package:easy_eat_restaurant/core/app_router.dart';
-import 'package:easy_eat_restaurant/core/constatns.dart';
 import 'package:easy_eat_restaurant/screens/account_screen.dart';
 import 'package:easy_eat_restaurant/screens/menu_screen.dart';
 import 'package:easy_eat_restaurant/screens/orders_screen.dart';

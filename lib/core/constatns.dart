@@ -8,9 +8,8 @@ class K {
 class AuthK extends K {
   static const passwordString = 'password';
   static const confirmPasswordString = 'confirmPassword';
-  static const nameString = 'firstName';
+  static const nameString = 'name';
   static const emailString = 'email';
-  static const lastNameString = 'lastName';
   static const phoneNumberString = 'phone';
 }
 

@@ -14,7 +14,7 @@
     "createAccount": "Create account!",
     "password": "password",
     "email": "e-mail",
-    "name": "First name",
+    "name": "Restaurant name",
     "lastName": "Last name",
     "phone": "phone number",
     "pickUpPlace": "Pick up place",
