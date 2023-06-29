@@ -33,8 +33,6 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
     });
 
     on<ChangeRestaurantAvatarEvent>((event, emit) async {
-      log("Get event from ImageCubit");
-      log(event.image.path);
       await _repo.changeRestaurantAvatar(file: File(event.image.path));
     });
   }

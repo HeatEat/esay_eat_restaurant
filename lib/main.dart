@@ -17,8 +17,6 @@ import 'core/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO: zapisanie zmiennych do pamięci telefonu
-
   await dotenv.load(fileName: '.env');
 
   String supabaseBaseUrl = dotenv.env['SUPABASE_BASE_URL'] ?? '';

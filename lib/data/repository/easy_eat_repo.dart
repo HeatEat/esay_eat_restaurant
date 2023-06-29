@@ -28,15 +28,36 @@ class EasyEatRepositoryImpl implements EasyEatRepository {
 
   @override
   Future changeRestaurantAvatar({required File file}) async {
-    final String path = await supabase.storage.from('restaurantAvatars').upload(
-          '${supabase.auth.currentUser!.id}/avatar1.png',
-          file,
-          fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
-        );
-    final List<Bucket> bucke = await supabase.storage.listBuckets();
-    final List<FileObject> objec =
-        await supabase.storage.from('restaurantAvatars').list();
-    log(objec.toString());
-    log(bucke.toString());
+    //check if restuarant has Avatar
+    final hasAvatar = await supabase.storage
+        .from("restaurantAvatars")
+        .list(path: supabase.auth.currentUser!.id);
+
+    if (hasAvatar.isEmpty) {
+      await supabase.storage.from('restaurantAvatars').upload(
+            '${supabase.auth.currentUser!.id}/avatar1.png',
+            file,
+            fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+          );
+
+      //try to get url
+      try {
+        final String publicUrl = await supabase.storage
+            .from('restaurantAvatars/${supabase.auth.currentUser!.id}')
+            .getPublicUrl('avatar1.png');
+        //update restaurant avatar_url
+        await supabase.from('restaurant').update({"avatar_url": publicUrl}).eq(
+            'id', supabase.auth.currentUser?.id);
+      } catch (e) {
+        rethrow;
+      }
+    } else {
+      log("Update avatar");
+      await supabase.storage.from('restaurantAvatars').update(
+            '${supabase.auth.currentUser!.id}/avatar1.png',
+            file,
+            fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
+          );
+    }
   }
 }
