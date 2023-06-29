@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -33,7 +32,10 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
     });
 
     on<ChangeRestaurantAvatarEvent>((event, emit) async {
-      await _repo.changeRestaurantAvatar(file: File(event.image.path));
+      restaurant =
+          await _repo.changeRestaurantAvatar(file: File(event.image.path));
+
+      emit(RestaurantUpdatedDetailState(restaurant));
     });
   }
 }

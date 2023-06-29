@@ -22,7 +22,6 @@ class EasyEatRepositoryImpl implements EasyEatRepository {
 
     RestaurantModel resturant = RestaurantModel.fromJson(data);
     log(data.toString());
-    log(resturant.toString());
     return resturant;
   }
 
@@ -42,22 +41,35 @@ class EasyEatRepositoryImpl implements EasyEatRepository {
 
       //try to get url
       try {
+        // ignore: await_only_futures
         final String publicUrl = await supabase.storage
             .from('restaurantAvatars/${supabase.auth.currentUser!.id}')
             .getPublicUrl('avatar1.png');
         //update restaurant avatar_url
-        await supabase.from('restaurant').update({"avatar_url": publicUrl}).eq(
-            'id', supabase.auth.currentUser?.id);
+        final data = await supabase
+            .from('restaurant')
+            .update({"avatar_url": publicUrl})
+            .eq('id', supabase.auth.currentUser?.id)
+            .select()
+            .single();
+        RestaurantModel resturant = RestaurantModel.fromJson(data);
+        return resturant;
       } catch (e) {
         rethrow;
       }
     } else {
-      log("Update avatar");
       await supabase.storage.from('restaurantAvatars').update(
             '${supabase.auth.currentUser!.id}/avatar1.png',
             file,
             fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
           );
+      final data = await supabase
+          .from('restaurant')
+          .select()
+          .eq('id', supabase.auth.currentUser?.id)
+          .single();
+      RestaurantModel resturant = RestaurantModel.fromJson(data);
+      return resturant;
     }
   }
 }

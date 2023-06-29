@@ -5,12 +5,22 @@ abstract class RestaurantState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  get restaurant => null;
 }
 
 class RestaurantInitial extends RestaurantState {}
 
 class RestaurantDetailsState extends RestaurantState {
+  @override
   final RestaurantModel restaurant;
 
   const RestaurantDetailsState(this.restaurant);
+}
+
+class RestaurantUpdatedDetailState extends RestaurantState {
+  @override
+  final RestaurantModel restaurant;
+
+  const RestaurantUpdatedDetailState(this.restaurant);
 }

@@ -24,14 +24,33 @@ class AccountScreen extends StatelessWidget {
                     BlocProvider.of<ImageCubit>(context).getAvatarImage();
                     // context.read<ImageCubit>().getAvatarImage();
                   },
-                  child: const CircleAvatar(
-                    radius: 30,
-                    child: Icon(Icons.add),
+                  child: BlocBuilder<RestaurantBloc, RestaurantState>(
+                    // buildWhen: (previous, current) {
+                    //   if (current is RestaurantDetailsState) {
+                    //     return true;
+                    //   } else if (current is RestaurantUpdatedDetailState) {
+                    //     return true;
+                    //   } else {
+                    //     return false;
+                    //   }
+                    // },
+                    builder: (context, state) {
+                      if (state.restaurant != null &&
+                          state.restaurant.avatarUrl != null) {
+                        return CircleAvatar(
+                            radius: 30,
+                            child: Image.network(state.restaurant.avatarUrl));
+                      } else {
+                        return const CircleAvatar(
+                            radius: 30, child: Icon(Icons.add));
+                      }
+                    },
                   ),
                 ),
                 BlocBuilder<RestaurantBloc, RestaurantState>(
                   builder: (context, state) {
-                    if (state is RestaurantDetailsState) {
+                    if (state is RestaurantDetailsState ||
+                        state is RestaurantUpdatedDetailState) {
                       return Text(
                         state.restaurant.restaurantName,
                         style: const TextStyle(
