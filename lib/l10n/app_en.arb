@@ -27,7 +27,11 @@
     "somethingWentWrong": "Something went wrong",
     "emailNotConfirmed": "Email not confirmed",
     "wrongVerificationCode": "Wrong verification code. Try again.",
-    "confirmPassword" : "confirm password",
+    "confirmPassword": "confirm password",
     "passwordsDontMach": "Passwords don't match",
-    "invalidCredentials": "Invalid credentials"
+    "invalidCredentials": "Invalid credentials",
+    "restaurantDetailHeader": "Complete the restaurant details",
+    "restaurantDetailContent": "Restaurant details are incomplete. They must be completed in order to accept orders using the EasyEat app. Do you want to complete the data now?",
+    "restuarantDetailAgree": "Fill out",
+    "restuarantDetailDecline": "Later"
 }

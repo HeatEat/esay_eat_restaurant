@@ -21,7 +21,11 @@
     "somethingWentWrong": "Coś poszło nie tak",
     "emailNotConfirmed": "Niepotwierdzony email",
     "wrongVerificationCode": "Niepoprawny kod weryfikacyjny. Spróbuj ponownie.",
-    "confirmPassword" : "potwierdź hasło",
+    "confirmPassword": "potwierdź hasło",
     "passwordsDontMach": "Hasła nie są identyczne",
-    "invalidCredentials": "Login lub hasło jest niepoprawne"
+    "invalidCredentials": "Login lub hasło jest niepoprawne",
+    "restaurantDetailHeader": "Uzupełnij dane restauracji",
+    "restaurantDetailContent": "Dane restauracji są niekompletne. Należy je uzupełnić, by przyjmować zamównienia za pomocą aplikacji EasyEat. Czy chcesz uzupełnić dane teraz?",
+    "restuarantDetailAgree": "Uzupełnij",
+    "restuarantDetailDecline": "Później"
 }
